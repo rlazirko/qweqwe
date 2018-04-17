@@ -5,7 +5,7 @@ pipeline {
       steps {
         sh 'npm install'
         sh 'npm test'
-        sh 'pm2 start node app.js'
+        sh 'npm start'
         input(message: 'Finished?', ok: 'Yes')
         sh 'sudo fuser -k 1337/tcp'
         echo 'Process killed!'
