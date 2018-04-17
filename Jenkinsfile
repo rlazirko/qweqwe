@@ -1,14 +1,25 @@
 pipeline {
   agent any
   stages {
-    stage('Deploy') {
+    stage('NPM Install') {
       steps {
         sh 'npm install'
+      }
+    }
+    stage('Test') {
+      steps {
         sh 'npm test'
+      }
+    }
+    stage('Run') {
+      steps {
         sh 'pm2 start app.js'
-        input(message: 'Finished?', ok: 'Yes')
-        sh 'fuser -k 1337/tcp'
-        echo 'Process killed!'
+      }
+    }
+    stage('Turn off') {
+      steps {
+        input 'Enough?'
+        sh 'pm2 stop app'
       }
     }
   }
