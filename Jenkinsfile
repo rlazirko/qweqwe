@@ -1,5 +1,10 @@
 pipeline {
-  agent any
+  agent {
+    node {
+      label 'qew'
+    }
+
+  }
   stages {
     stage('NPM Install') {
       steps {
